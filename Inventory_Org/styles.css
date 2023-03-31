@@ -1,0 +1,19 @@
+
+body {
+    background-color: rgb(95, 185, 11);
+}
+
+
+#inventoryDiv{
+    height: 200px;
+    width: 350px;
+    border: 2px solid black; 
+}
+
+
+#chestDiv{
+    height: 200px;
+    width: 350px;
+    border: 2px solid black; 
+}
+
