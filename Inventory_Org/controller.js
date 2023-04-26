@@ -1,59 +1,61 @@
 
-// Det som endrer dataene våre/funksjoner:
-
-function assignInventory() {
-    inventory = document.getElementById('inventoryDiv').value;
+function addItemToInventory(index) {
+    inventory.push({
+      itemName: chestItems[index].itemName, 
+      info: chestItems[index].info,
+      durability: chestItems[index].durability
+    });
+    chestItems.splice(index, 1);
+    updateView();
 }
 
 
+function toggleInventory() {
+  inventoryDiv = document.getElementById("inventoryDiv");
 
-/*
-Lag en funksjon som lytter etter klikk-arrangementer 
-på objekter som kan plukkes opp. 
-
-Når et objekt blir klikket på, 
-skal funksjonen legge det til i inventory-listen.
-*/
-
-
-// .find() returnerer verdien til det første elementet som blir godkjent av testen.
-
-/*
-I addFoundItemToInventory() funksjonen, 
-kan du finne ut hvilket bilde som ble klikket på ved å sjekke event.target. 
-
-Siden bildene har en bestemt rekkefølge, 
-kan du bruke indeksen til å hente ut det tilsvarende objektet fra foundItems og legge det til i inventory.
-*/
-
-/*
-Under konverterer vi en samling av elementer (barn av parentNode) til et Array-objekt.
-
-Dette gjør at vi kan bruke indexOf-metoden for å finne indexen (plasseringen) av det klikkede elementet (som er event.target) 
-i forhold til de andre elementene i samlingen.
-*/
-
-function addFoundItemToInventory(event) {
- const clickedIndex = Array.from(event.target.parentNode.children).indexOf(event.target);
- const selectedItem = foundItems[clickedIndex];
- inventory.push(selectedItem);
- updateView();
+  if (inventoryDiv.style.display === "none") {
+    inventoryDiv.style.display = "block";
+  } else {
+    inventoryDiv.style.display = "none";
+  }
 }
 
 
-// forEach()-metoden brukes til å gå gjennom elementene i et array.
-
-
-function checkForItemClick() {
-  const itemImgs = document.querySelectorAll('.item_img');
-
-  itemImgs.forEach(itemImg => {
-    itemImg.addEventListener('click', addFoundItemToInventory);
-  });
+function showInfo(element) {
+  element.innerHTML = `${inventory[element.id].itemName}  -  ${inventory[element.id].info}`;
 }
 
 
+function removeItemFromInventory(index) {    // Man kan kaste gjenstanden om man vil
+  inventory.splice(index, 1);
+  updateView();
+}
 
 
+// function useItem(index) { 
+//  inventory[index].durability -= 10;
+
+//  if(inventory[index].durability == 0) {
+//   itemMessage = `Your ${inventory[index].itemName} broke!`;
+//   console.log(itemMessage);
+//   document.getElementById('message').innerHTML = itemMessage;
+//   inventory.splice(index, 1);  // Gjenstanden forsvinner når den er ødelagt
+//  }
+//   updateView(); 
+// } 
 
 
+function useItem(index) { 
+  inventory[index].durability -= 10;
+ 
+  if(inventory[index].durability < 0) {
+   itemMessage = `Your ${inventory[index].itemName} was consumed!`;
+   document.getElementById('message').innerHTML = itemMessage;
+   setTimeout(function() {
+     inventory.splice(index, 1);  // Gjenstanden forsvinner når den er ødelagt
+     updateView(); 
+   }, 1500); // 1 sekund tidsforsinkelse før oppdatering av visningen
+  } else {
+    updateView();
+  }
+ }

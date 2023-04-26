@@ -1,19 +1,32 @@
 
 body {
-    background-color: rgb(95, 185, 11);
+    background-color: rgb(3, 86, 95);
 }
 
 
-#inventoryDiv{
-    height: 200px;
-    width: 350px;
-    border: 2px solid black; 
+.item_img {
+    height: 250px;
+    width: 300px;
 }
 
 
-#chestDiv{
-    height: 200px;
-    width: 350px;
-    border: 2px solid black; 
+#inventoryDiv {
+    font-size: 25px;
 }
 
+
+#chestDiv {
+    font-size: 25px;
+}
+
+.item {
+    user-select: none;
+}
+
+.item:hover{
+    color: aliceblue;
+}
+
+.item:active{
+    color: rgb(81, 200, 87);
+}
