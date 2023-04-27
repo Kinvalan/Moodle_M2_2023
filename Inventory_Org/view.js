@@ -1,3 +1,4 @@
+
 updateView();
 function updateView() {
 
@@ -45,8 +46,6 @@ function updateView() {
   <div id="chestDiv">
     ${chestHTML}
   </div>
-  
-  
   `;
       
   document.getElementById('app').innerHTML = html;

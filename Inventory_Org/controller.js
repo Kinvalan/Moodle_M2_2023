@@ -32,19 +32,6 @@ function removeItemFromInventory(index) {    // Man kan kaste gjenstanden om man
 }
 
 
-// function useItem(index) { 
-//  inventory[index].durability -= 10;
-
-//  if(inventory[index].durability == 0) {
-//   itemMessage = `Your ${inventory[index].itemName} broke!`;
-//   console.log(itemMessage);
-//   document.getElementById('message').innerHTML = itemMessage;
-//   inventory.splice(index, 1);  // Gjenstanden forsvinner når den er ødelagt
-//  }
-//   updateView(); 
-// } 
-
-
 function useItem(index) { 
   inventory[index].durability -= 10;
  
@@ -54,7 +41,7 @@ function useItem(index) {
    setTimeout(function() {
      inventory.splice(index, 1);  // Gjenstanden forsvinner når den er ødelagt
      updateView(); 
-   }, 1500); // 1 sekund tidsforsinkelse før oppdatering av visningen
+   }, 1500); // 1,5 sekund tidsforsinkelse før oppdatering av visningen
   } else {
     updateView();
   }
